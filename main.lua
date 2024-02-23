@@ -8,8 +8,6 @@ local ACCELERATION = 500 -- Acceleration value (meters per second squared)
 local SCREEN_BORDER = 0.2 -- Border limit on the screen sides (meters)
 local JUMP_VELOCITY = -500 -- Initial velocity when jumping (meters per second)
 local FRICTION_COEFFICIENT = 0.7 -- Friction coefficient
-local SLOPE_ANGLE = math.rad(30) -- Angle of the slope in radians
-local SLOPE_LENGTH = 2 -- Length of the slope (meters)
 local TEMPERATURE_LIMIT = 100 -- You can adjust this as needed (degrees Celsius)
 -- Define Variables
 local KINETIC_ENERGY = 0 -- Initialize kinetic energy
@@ -54,14 +52,18 @@ local function checkInTable(val, table)
     return false
 end
 function love.load()
-    friction_coeff = Slider:new(100, 100, 200, 20, 0, 1)
-
+    friction_coeff = Slider:new(20, 220, 200, 20, 0, 1)
+    acceleration_val = Slider:new(20, 300, 200, 20, 500, 1500)
+    gravity_constant = Slider:new(20, 380, 200, 20, 9.8, 100)
 
 end
 function love.update(dt)
     update_sliders()
 
+    ball.ay = GRAVITY * 51
     FRICTION_COEFFICIENT = friction_coeff:getValue()
+    ACCELERATION = acceleration_val:getValue()
+    GRAVITY = gravity_constant:getValue()
      SAVED_ENERGY = TOTAL_ENERGY
     TOTAL_ENERGY = KINETIC_ENERGY + POTENTIAL_ENERGY
     ball.h = (love.graphics.getHeight() - FLOOR_HEIGHT) - (ball.y + BALL_RADIUS)
@@ -185,6 +187,11 @@ function love.draw()
                         "\nTotal Energy : ".. Round(TOTAL_ENERGY, 2).." J" ..
                         "\nDissipated Energy (" ..DISSIPATION_VALUES..") : ".. Round(DISSIPATED_ENERGY, 2).." J" ..
                         "\n -> OTHER FACTORS [ DISSIPATED ]")
+
+    font:print("\n\n\n\n\nFriction Coefficient : "..FRICTION_COEFFICIENT, 0, 20)
+    font:print("\n\n\n\n\nAcceleration Value : "..ACCELERATION, 0, 100)
+    font:print("\n\n\n\n\nGravity Constant : "..GRAVITY, 0, 180)
+
     local ballVX =  math.abs(math.floor(ball.vx))
     local ballVY = math.abs(math.floor(ball.vy))
     if math.abs(ball.vy) <=4 then
