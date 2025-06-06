@@ -48,3 +48,19 @@ This is a physics-based 2D simulation created using the [LÖVE2D](https://love2d
 ---
 
 
+---
+
+## 🚀 How to Run
+
+1. **Install LÖVE2D** from [https://love2d.org/](https://love2d.org/)
+2. **Clone this repository:**
+
+   ```bash
+   git clone https://github.com/your-username/2d-physics-sim.git
+   cd 2d-physics-sim
+   ```
+3. **Run the script**
+
+   ```bash
+   love .
+   ```
