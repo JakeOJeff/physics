@@ -1,23 +1,26 @@
 
--- Define constants
-local GRAVITY = 9.8 -- Gravity value (meters per second squared)
-local BALL_RADIUS = 20 -- Radius of the ball (meters)
-local FLOOR_HEIGHT = 50 -- Height of the floor (meters)
-local BOUNCE_FACTOR = 0.7 -- Factor of restitution (how much velocity is conserved after a bounce)
-local ACCELERATION = 500 -- Acceleration value (meters per second squared)
-local SCREEN_BORDER = 0.2 -- Border limit on the screen sides (meters)
-local JUMP_VELOCITY = -500 -- Initial velocity when jumping (meters per second)
-local FRICTION_COEFFICIENT = 0.7 -- Friction coefficient
-local TEMPERATURE_LIMIT = 100 -- You can adjust this as needed (degrees Celsius)
--- Define Variables
-local KINETIC_ENERGY = 0 -- Initialize kinetic energy
-local POTENTIAL_ENERGY = 0 -- Initialize potential energy
-local TOTAL_ENERGY = 0 -- Initialize total energy
-local SAVED_ENERGY = 0 -- Initialize saved energy
-local DISSIPATED_ENERGY = 0 -- Initialize dissipated energy
-local DISSIPATION_VALUES = "" -- Initialize dissipation values
-local ROLLING_FACTOR = 0 -- Initialize rolling factor
-local HEAT_FACTOR = 0 -- Initialize heat factor
+-- Physics Constants
+local GRAVITY = 9.8               -- m/s², standard Earth gravity
+local BALL_RADIUS = 20           -- pixels (not meters, visually appropriate)
+local FLOOR_HEIGHT = 100         -- pixels from the bottom
+local BOUNCE_FACTOR = 0.8        -- Bounciness: 1 = perfect bounce, <1 = damped
+local ACCELERATION = 300         -- m/s², horizontal movement acceleration
+local SCREEN_BORDER = 10         -- pixels, buffer on screen sides
+local JUMP_VELOCITY = -400       -- m/s, initial jump velocity (negative = up)
+local FRICTION_COEFFICIENT = 0.2 -- 0.1 to 0.3 is realistic for rubber-on-ground
+local TEMPERATURE_LIMIT = 100    -- °C, placeholder if you simulate heat
+
+-- Energy Variables (Joules)
+local KINETIC_ENERGY = 0
+local POTENTIAL_ENERGY = 0
+local TOTAL_ENERGY = 0
+local SAVED_ENERGY = 0
+local DISSIPATED_ENERGY = 0
+
+-- Other Calculations
+local DISSIPATION_VALUES = ""
+local ROLLING_FACTOR = 0
+local HEAT_FACTOR = 0
 local VELOCITY_DIR_X = ">"
 local VELOCITY_DIR_Y = ">"
 
